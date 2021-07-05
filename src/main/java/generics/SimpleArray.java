@@ -1,29 +1,26 @@
-package iterator;
+package generics;
 
 import java.util.*;
 
 public class SimpleArray<T> implements Iterable<T> {
     Object[] array;
+    private int count = 0;
 
     private SimpleArray(int num) {
         this.array = new Objects[num];
     }
 
     private void add(T model) {
-        for (int index = 0; index < array.length; index++) {
-            if (array[index] == null) {
-                array[index] = model;
-            }
-        }
+        array[count++] = model;
     }
 
     private void set(int index, T model) {
-        Objects.checkIndex(index, array.length);
+        Objects.checkIndex(index, count);
         array[index] = model;
     }
 
     private void remove(int index) {
-        Objects.checkIndex(index, array.length);
+        Objects.checkIndex(index, count);
         array[index] = null;
         System.arraycopy(array, index + 1, array, index, array.length - 1);
     }
