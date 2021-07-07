@@ -3,7 +3,7 @@ package generics;
 import java.util.*;
 
 public class SimpleArray<T> implements Iterable<T> {
-    Object[] array;
+    private Object[] array;
     private int count = 0;
 
     private SimpleArray(int num) {
@@ -22,7 +22,8 @@ public class SimpleArray<T> implements Iterable<T> {
     private void remove(int index) {
         Objects.checkIndex(index, count);
         array[index] = null;
-        System.arraycopy(array, index + 1, array, index, array.length - 1);
+        System.arraycopy(array, index + 1, array, index, array.length - index - 1);
+        count--;
     }
 
     @Override
@@ -35,12 +36,12 @@ public class SimpleArray<T> implements Iterable<T> {
 
         @Override
         public boolean hasNext() {
-            return count < array.length;
+            return this.count < array.length;
         }
 
         @Override
         public T next() {
-            if (count >= array.length) {
+            if (!hasNext()) {
                 throw new NoSuchElementException();
             }
             return (T) array[count++];
