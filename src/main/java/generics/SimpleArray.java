@@ -32,11 +32,11 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     class Iter implements Iterator<T> {
-        int count;
+        int counter;
 
         @Override
         public boolean hasNext() {
-            return this.count < array.length;
+            return this.counter < count;
         }
 
         @Override
