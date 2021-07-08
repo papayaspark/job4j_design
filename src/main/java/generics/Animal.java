@@ -1,4 +1,4 @@
-package iterator;
+package generics;
 
 public class Animal {
 }
