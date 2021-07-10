@@ -31,10 +31,10 @@ public class SimpleArray <T> implements Iterable<T> {
 
     public class Iter implements Iterator<T> {
         int counter;
-        int expectedMOdCount;
+        int expectedModCount;
 
         public Iter() {
-            this.expectedMOdCount = modCount;
+            this.expectedModCount = modCount;
         }
 
         @Override
@@ -47,7 +47,7 @@ public class SimpleArray <T> implements Iterable<T> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            if (expectedMOdCount != modCount) {
+            if (expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
             }
             return (T) array[counter++];
