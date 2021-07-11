@@ -19,11 +19,13 @@ public class ForwardLinked <T> implements Iterable<T> {
             tail = tail.next;
         }
         tail.next = node;
+        count++;
     }
 
     public void addFirst(T value) {
         final Node<T> f = head;
         head = new Node<>(value, f);
+        count++;
         modCount++;
     }
 
@@ -67,6 +69,7 @@ public class ForwardLinked <T> implements Iterable<T> {
     private static class Node<T> {
         T value;
         Node<T> next;
+        Node<T> prev;
 
         public Node(T value, Node<T> next) {
             this.value = value;
