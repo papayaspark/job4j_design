@@ -3,7 +3,7 @@ package collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ForwardLinked <T> implements Iterable<T> {
+public class ForwardLinked<T> implements Iterable<T> {
     private Node<T> head;
     int count = 0;
     int modCount = 0;

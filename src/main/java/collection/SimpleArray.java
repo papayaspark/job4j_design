@@ -2,7 +2,7 @@ package collection;
 
 import java.util.*;
 
-public class SimpleArray <T> implements Iterable<T> {
+public class SimpleArray<T> implements Iterable<T> {
     private Object[] array;
     private int count = 0;
     private int modCount = 0;

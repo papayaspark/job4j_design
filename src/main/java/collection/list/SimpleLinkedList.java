@@ -2,7 +2,7 @@ package collection.list;
 
 import java.util.*;
 
-public class SimpleLinkedList<E> implements List<E>{
+public class SimpleLinkedList<E> implements List<E> {
     private Object[] array;
     private int count = 0;
     private int modCount = 0;
