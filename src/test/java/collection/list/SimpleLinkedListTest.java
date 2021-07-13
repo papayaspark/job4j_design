@@ -3,6 +3,7 @@ package collection.list;
 import org.hamcrest.core.Is;
 import org.junit.Test;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 import static org.junit.Assert.*;
@@ -24,6 +25,17 @@ public class SimpleLinkedListTest {
         list.add(1);
         list.add(2);
         list.get(2);
+    }
+
+    @Test(expected = ConcurrentModificationException.class)
+    public void whenGetFromConcurrentModificationExceptionThrown() {
+        List<Integer> list = new SimpleLinkedList<>();
+        list.add(1);
+        list.add(2);
+        Iterator<Integer> iter = list.iterator();
+        list.add(5);
+        iter.next();
+
     }
 
     @Test

@@ -3,8 +3,8 @@ package collection.list;
 import java.util.*;
 
 public class SimpleLinkedList<E> implements List<E> {
-    private Node<E> head;
-    private Node<E> tail;
+    private SimpleLinkedList.Node<E> head;
+    private SimpleLinkedList.Node<E> tail;
     private int count = 0;
     private int modCount = 0;
 
@@ -41,12 +41,11 @@ public class SimpleLinkedList<E> implements List<E> {
     }
 
     public class Iter implements Iterator<E> {
-        Node<E> following;
-        int counter;
+        Node<E> following = head;
+        int expectedModCount;
 
         public Iter() {
-            this.following = head;
-            this.counter = modCount;
+            this.expectedModCount = modCount;
         }
 
         @Override
@@ -59,7 +58,7 @@ public class SimpleLinkedList<E> implements List<E> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            if (counter != modCount) {
+            if (expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
             }
             E value = following.item;
