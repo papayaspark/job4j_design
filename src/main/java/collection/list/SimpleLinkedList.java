@@ -3,39 +3,36 @@ package collection.list;
 import java.util.*;
 
 public class SimpleLinkedList<E> implements List<E> {
-    private Object[] array;
+    private Node<E> head;
+    private Node<E> tail;
     private int count = 0;
     private int modCount = 0;
-    Node head;
 
     public SimpleLinkedList() {
-        this.array = new Object[10];
     }
 
     @Override
     public void add(E value) {
-        if (count == array.length) {
-            array = Arrays.copyOf(array, array.length + (array.length >> 1));
-        }
-        Node<E> node;
-        if (head == null) {
-            node = new Node(null, value, null);
+        Node<E> element = tail;
+        Node<E> node = new Node<>(element, value, null);
+        tail = node;
+        if (element == null) {
             head = node;
-            array[count++] = head;
         } else {
-            Node<E> l = head;
-            node = new Node<>(l, value, null);
-            l.next = node;
-            array[count++] = node;
+            element.next = node;
         }
         modCount++;
-
+        count++;
     }
 
     @Override
     public E get(int index) {
         Objects.checkIndex(index, count);
-        return (E) this.array[index];
+        Node<E> element = head;
+            for (int i = 0; i < index; i++) {
+                element = element.next;
+            }
+        return element.item;
     }
 
     @Override
@@ -44,17 +41,17 @@ public class SimpleLinkedList<E> implements List<E> {
     }
 
     public class Iter implements Iterator<E> {
-        Node<E> next;
+        Node<E> following;
         int counter;
-        int expectedModCount;
 
         public Iter() {
-            this.expectedModCount = modCount;
+            this.following = head;
+            this.counter = modCount;
         }
 
         @Override
         public boolean hasNext() {
-            return this.counter < count;
+            return this.following != null;
         }
 
         @Override
@@ -62,11 +59,12 @@ public class SimpleLinkedList<E> implements List<E> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            if (expectedModCount != modCount) {
+            if (counter != modCount) {
                 throw new ConcurrentModificationException();
             }
-            next = (Node<E>) array[counter++];
-            return (E) next.item;
+            E value = following.item;
+            following = following.next;
+            return value;
         }
     }
 
