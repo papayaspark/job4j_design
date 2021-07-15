@@ -11,12 +11,11 @@ public class SimpleSet<T> implements Set<T> {
 
     @Override
     public boolean add(T value) {
-        if (!contains(value)) {
-            set.add(value);
-            return true;
-        } else {
+        if (contains(value)) {
             return false;
         }
+        set.add(value);
+        return true;
     }
 
     @Override
@@ -34,17 +33,7 @@ public class SimpleSet<T> implements Set<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
-            @Override
-            public boolean hasNext() {
-                return set.iterator().hasNext();
-            }
-
-            @Override
-            public T next() {
-                return (T) set.iterator().next();
-            }
-        };
+        return set.iterator();
     }
 }
 
