@@ -11,7 +11,7 @@ public class File {
                         for (col = 1; col < 11; col++) {
                             rsl = line * col;
                             System.out.print(rsl + " ");
-                            out.write(rsl);
+                            out.write(String.valueOf(rsl + " ").getBytes());
                         }
                     }
                 } catch (Exception e) {
