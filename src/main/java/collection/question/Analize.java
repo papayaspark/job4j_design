@@ -3,7 +3,6 @@ package collection.question;
 import java.util.*;
 
 public class Analize {
-
     public static Info diff(Set<User> previous, Set<User> current) {
         if (previous == null || current == null) {
             return new Info(-1, -1, -1);
