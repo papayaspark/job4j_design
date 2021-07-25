@@ -73,4 +73,17 @@ public class AnalizeTest {
         );
     }
 
+    @Test
+    public void whenNull() {
+        User u1 = new User(1, "A");
+        User u2 = new User(2, "B");
+        User u3 = new User(3, "C");
+        Set<User> previous = Set.of(u1, u2, u3);
+        Set<User> current = null;
+        assertThat(
+                Analize.diff(previous, current),
+                is(new Info(-1, -1, -1))
+        );
+    }
+
 }

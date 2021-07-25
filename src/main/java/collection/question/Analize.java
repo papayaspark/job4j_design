@@ -12,26 +12,19 @@ public class Analize {
         Info info = new Info(add, change, del);
         HashMap<Integer, User> previousMap = new HashMap<>();
         previous.forEach(user -> previousMap.put(user.getId(), user));
-        HashMap<Integer, User> currentMap = new HashMap<>();
-        current.forEach(user -> currentMap.put(user.getId(), user));
-        for (var v : previousMap.entrySet()) {
-            if (!currentMap.containsKey(v.getKey())) {
-                del++;
-                info.setDeleted(del);
-            }
-            if (currentMap.containsKey(v.getKey())) {
-                    if (!v.getValue().equals(currentMap.get(v.getKey()))) {
-                        change++;
-                        info.setChanged(change);
-                    }
-            }
-        }
-        for (var v : currentMap.entrySet()) {
-            if (!previousMap.containsKey(v.getKey())) {
+        for (User user : current) {
+            if (!previousMap.containsKey(user.getId())) {
                 add++;
                 info.setAdded(add);
             }
+            if (previousMap.containsKey(user.getId())
+                    && !user.equals(previousMap.get(user.getId()))) {
+                change++;
+                info.setChanged(change);
+            }
         }
+        del =  add + previousMap.size() - current.size();
+        info.setDeleted(del);
         return info;
     }
 }
