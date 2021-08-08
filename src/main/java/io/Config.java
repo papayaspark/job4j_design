@@ -28,8 +28,8 @@ public class Config {
                 }
                 values.put(check[0], check[1]);
             }
-        } catch (IllegalArgumentException | IOException iae) {
-            iae.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 
