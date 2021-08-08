@@ -7,7 +7,7 @@ public class Analizy {
         String s;
         String[] row = null;
         String[] nextRow = null;
-        try(BufferedReader in = new BufferedReader(new FileReader(source));
+        try (BufferedReader in = new BufferedReader(new FileReader(source));
             PrintWriter out = new PrintWriter(
                     new BufferedOutputStream(new FileOutputStream(target)))) {
             for (s = in.readLine(); s != null; s = in.readLine()) {
@@ -32,7 +32,7 @@ public class Analizy {
 
     }
 
-    public static void main(String[] args) throws FileNotFoundException{
+    public static void main(String[] args) throws FileNotFoundException {
 //        try (PrintWriter out = new PrintWriter(new FileOutputStream("unavailable.csv"))) {
 //            out.println("15:01:30;15:02:32");
 //            out.println("15:10:30;23:12:32");
