@@ -17,11 +17,10 @@ public class Analizy {
 
                 if (row == null && (s.startsWith("400") || s.startsWith("500"))) {
                     row = s.split(" ");
-                    out.print(row[1]);
-                    out.print(";");
+                    out.print(row[1] + ";");
                 } else if (row != null && (s.startsWith("200") || s.startsWith("300"))) {
                     nextRow = s.split(" ");
-                    out.print(nextRow[1]);
+                    out.print(nextRow[1] + ";");
                     out.println();
                     row = null;
                 }
