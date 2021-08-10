@@ -17,11 +17,10 @@ public class Analizy {
 
                 if (row == null && (s.startsWith("400") || s.startsWith("500"))) {
                     row = s.split(" ");
-                    out.print(row[1] + ";");
+                    out.printf("%s;", row[1]);
                 } else if (row != null && (s.startsWith("200") || s.startsWith("300"))) {
                     nextRow = s.split(" ");
-                    out.print(nextRow[1] + ";");
-                    out.println();
+                    out.printf("%s;%n", nextRow[1]);
                     row = null;
                 }
             }
@@ -33,12 +32,6 @@ public class Analizy {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-//        try (PrintWriter out = new PrintWriter(new FileOutputStream("unavailable.csv"))) {
-//            out.println("15:01:30;15:02:32");
-//            out.println("15:10:30;23:12:32");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         Analizy azy = new Analizy();
         azy.unavailable("source", "targets");
     }
