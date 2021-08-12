@@ -19,7 +19,7 @@ public class User {
     public static void main(String[] args) {
         String name = "Mike";
         int children = 2;
-        Calendar calendar = new GregorianCalendar(1992,10, 5);
+        Calendar calendar = new GregorianCalendar(1992, 10, 5);
         User user1 = new User(name, children, calendar);
         User user2 = new User(name, children, calendar);
         System.out.println(user1.hashCode());
