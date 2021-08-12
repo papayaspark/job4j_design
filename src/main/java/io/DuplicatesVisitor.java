@@ -9,24 +9,18 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.*;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
+
+    ArrayList<String> duplicates = new ArrayList<>();
+    Set<FileProperty> setFile = new HashSet<>();
+
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 
-        List<File> listFile = new ArrayList<>();
-        ArrayList<File> duplicates = new ArrayList<>();
-        Set<File> setFile = new HashSet<>();
-        File files = file.toFile();
-        if (!files.exists()) {
-            throw new IllegalArgumentException(String.format("Not existed %s", files.getAbsoluteFile()));
-        }
-        listFile = Arrays.asList(files.listFiles());
-        for (File xFile : listFile) {
-            if (xFile.isDirectory()) {
-                visitFile(xFile.toPath(), attrs);
-            } else if (!setFile.add(xFile)) {
-                duplicates.add(xFile);
+        FileProperty fProp = new FileProperty(attrs.size(), file.getFileName().toString());
+        String way = file.toString();
+        if (!setFile.add(fProp)) {
+                duplicates.add(file.toString());
             }
-        }
         duplicates.forEach(System.out::println);
         return FileVisitResult.CONTINUE;
     }
