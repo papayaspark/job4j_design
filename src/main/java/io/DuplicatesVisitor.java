@@ -1,6 +1,5 @@
 package io;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Path;
@@ -10,7 +9,7 @@ import java.util.*;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
-    ArrayList<String> duplicates = new ArrayList<>();
+    List<String> duplicates = new ArrayList<>();
     Set<FileProperty> setFile = new HashSet<>();
 
     @Override
@@ -21,7 +20,6 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         if (!setFile.add(fProp)) {
                 duplicates.add(file.toString());
             }
-        duplicates.forEach(System.out::println);
         return FileVisitResult.CONTINUE;
     }
 }
