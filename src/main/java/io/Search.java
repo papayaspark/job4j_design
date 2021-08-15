@@ -9,7 +9,10 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get(".");
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Invalid parameters.");
+        }
+        Path start = Paths.get(args[0]);
         search(start, p -> p.toFile().getName().endsWith("js")).forEach(System.out::println);
     }
 
