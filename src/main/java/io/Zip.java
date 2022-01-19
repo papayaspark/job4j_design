@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import io.Search;
 
 import static java.util.Objects.isNull;
 
@@ -23,7 +22,8 @@ public class Zip {
         }
 
         try (ZipOutputStream zips = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
-            for (var file:
+            for (var file
+                    :
                  sources) {
             zips.putNextEntry(new ZipEntry(file.getPath()));
             try (BufferedInputStream outs = new BufferedInputStream(new FileInputStream(file))) {
